@@ -1,0 +1,12 @@
+body { background-color: #fff; }
+
+footer {
+  @extend .navbar;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #f8f9fa !important;
+  color: #fff;
+  text-align: center;
+}
