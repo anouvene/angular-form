@@ -13,7 +13,7 @@ import { services } from './services';
 
 @NgModule({
     imports: [
-        HttpClientModule
+        HttpClientModule,
     ],
     providers: [
         AuthGuard,
