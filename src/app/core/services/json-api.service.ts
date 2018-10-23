@@ -23,9 +23,9 @@ export class JsonApiService {
     }
 
     private handleError(error: any) {
-        let errorMsg = (error.message) ? error.message :
+        const errorMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        
+
         return Observable.throw(errorMsg);
     }
 
