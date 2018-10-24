@@ -13,7 +13,7 @@ const MATERIAL = [
     CommonModule,
     ...MATERIAL // Operateur spread transformant un array en item list
   ],
-  exports: MATERIAL, // rendre Material disponible pour tous les autres modules de l'application
+  exports: MATERIAL, // Rendre Material disponible pour tous les autres modules de l'application
   declarations: []
 })
 export class MaterialModule { }
