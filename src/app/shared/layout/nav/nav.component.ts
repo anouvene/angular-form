@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '@env/environment';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MyModalComponent } from '@app/modules/home/modals/my-modal.component';
+import { MyModalComponent } from '@app/shared/layout/modals/my-modal.component';
 
 @Component({
     selector: 'app-nav',

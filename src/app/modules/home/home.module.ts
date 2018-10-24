@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { MyModalComponent } from './modals/my-modal.component';
+import { MyModalComponent } from '../../shared/layout/modals/my-modal.component';
 
 import { HomeComponent } from './pages/home.component';
 import { HomeRoutingModule } from './home.routing';
