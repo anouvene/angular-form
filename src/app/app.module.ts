@@ -10,7 +10,7 @@ import { HomeModule } from './modules/home/home.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from '@app/modules/material/material.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,9 +20,9 @@ import { MaterialModule } from '@app/modules/material/material.module';
     // angular
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
 
     // 3rd party
+    ReactiveFormsModule,
 
     // core & shared
     CoreModule,

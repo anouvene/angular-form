@@ -125,6 +125,9 @@
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true
+    "directive-class-suffix": true,
+    "typedef": [false, "call-signature", "parameter", "member-variable-declaration"],
+    "no-inferrable-types": [true, "ignore-params", "ignore-properties"]
+
   }
 }

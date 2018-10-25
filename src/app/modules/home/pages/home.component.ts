@@ -1,27 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-
-import { ProjectService, Project } from '@app/core';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, FormControl, Validator} from '@angular/forms';
 
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public form: FormGroup;
 
-    projects$: Observable<Project[]>;
+  public activites: string[] = ['Sport', 'Ciné', 'Musique'];
 
-    constructor(private projectService: ProjectService) { }
+  constructor(private fb: FormBuilder) { }
 
-    ngOnInit(): void {
-        this.loadProjects();
-    }
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      request: [''],
+      vegan: [''],
+      sexe: [''],
+      news: [''],
+      hobby: [''],
+    });
+  }
 
-    loadProjects() {
-        this.projects$ = this.projectService.getAll();
-    }
-
-
+  public register() {
+    console.log(this.form.value);
+  }
 }

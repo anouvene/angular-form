@@ -7,6 +7,9 @@ import { HomeRoutingModule } from './home.routing';
 
 import { SharedModule } from '@app/shared';
 
+import { MaterialModule } from '@app/modules/material/material.module';
+
+
 @NgModule({
     declarations: [
         HomeComponent,
@@ -14,8 +17,8 @@ import { SharedModule } from '@app/shared';
     ],
     imports: [
         SharedModule,
-
-        HomeRoutingModule
+        HomeRoutingModule,
+        MaterialModule,
     ],
     exports: [],
     providers: [],

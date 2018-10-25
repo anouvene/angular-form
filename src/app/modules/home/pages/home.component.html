@@ -1,7 +1,45 @@
-<div id="content">
-    <ul>
-        <li *ngFor="let project of projects$ | async">
-            {{ project | json }}
-        </li>
-    </ul>
+<div id="content" class="container">
+  <form [formGroup]="form" class="col-6 mx-auto" (submit)="register()">
+
+    <mat-form-field>
+      <input matInput type="text" value="Vegan ?" [disabled]="true">
+      <mat-checkbox formControlName="vegan" value="Vegan ?">
+        Oui/Non ?
+      </mat-checkbox>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" value="Sexe ?" [disabled]="true">
+      <mat-radio-group formControlName="sexe">
+        <mat-radio-button value="femme" labelPosition="before">Femme</mat-radio-button>
+        <mat-radio-button value="homme" labelPosition="before">Homme</mat-radio-button>
+      </mat-radio-group>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" value="Votre activité favorite ? {{ form.get('hobby').value }}" [disabled]="true">
+      <mat-radio-group formControlName="hobby">
+        <mat-radio-button *ngFor="let activite of activites" [value]="activite">
+          {{ activite }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" value="Votre suggestion ?" [disabled]="true">
+      <textarea matInput type="text" formControlName="request" value="..."></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" value="Recevoir la newsletter ?" [disabled]="true">
+      <mat-slide-toggle formControlName="news">
+        Oui/Non ?
+      </mat-slide-toggle>
+    </mat-form-field><br><br>
+
+    <button mat-raised-button>Valider</button><br><br>
+
+    <pre>{{ form.value | json }}</pre>
+
+  </form>
 </div>
