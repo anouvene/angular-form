@@ -1,15 +1,17 @@
 <div id="content" class="container">
-  <form [formGroup]="form" class="col-6 mx-auto" (submit)="register()">
+  <form [formGroup]="form" class="col-8 mx-auto" (submit)="register()">
 
+    <!--MatCheckbox-->
     <mat-form-field>
-      <input matInput type="text" value="Vegan ?" [disabled]="true">
+      <input matInput type="text" placeholder="Vegan ?" [disabled]="true">
       <mat-checkbox formControlName="vegan" value="Vegan ?">
         Oui/Non ?
       </mat-checkbox>
     </mat-form-field>
 
+    <!--MatRadio-->
     <mat-form-field>
-      <input matInput type="text" value="Sexe ?" [disabled]="true">
+      <input matInput type="text" placeholder="Sexe ?" [disabled]="true">
       <mat-radio-group formControlName="sexe">
         <mat-radio-button value="femme" labelPosition="before">Femme</mat-radio-button>
         <mat-radio-button value="homme" labelPosition="before">Homme</mat-radio-button>
@@ -17,7 +19,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput type="text" value="Votre activité favorite ? {{ form.get('hobby').value }}" [disabled]="true">
+      <input matInput type="text" placeholder="Votre activité favorite ? {{ form.get('hobby').value }}" [disabled]="true">
       <mat-radio-group formControlName="hobby">
         <mat-radio-button *ngFor="let activite of activites" [value]="activite">
           {{ activite }}
@@ -25,20 +27,87 @@
       </mat-radio-group>
     </mat-form-field>
 
+    <!--MatInput-->
     <mat-form-field>
-      <input matInput type="text" value="Votre suggestion ?" [disabled]="true">
+      <input matInput type="text" placeholder="Votre suggestion ?" [disabled]="true">
       <textarea matInput type="text" formControlName="request" value="..."></textarea>
     </mat-form-field>
 
+    <!--MatSlideToggle-->
     <mat-form-field>
-      <input matInput type="text" value="Recevoir la newsletter ?" [disabled]="true">
+      <input matInput type="text" placeholder="Recevoir la newsletter ?" [disabled]="true">
       <mat-slide-toggle formControlName="news">
         Oui/Non ?
       </mat-slide-toggle>
     </mat-form-field><br><br>
 
+    <!--MatSelect/MatOption-->
+    <mat-form-field>
+      <input matInput type="text" placeholder="Food ?" [disabled]="true">
+      <mat-select formControlName="food" placeholder="Food ?">
+        <mat-option *ngFor="let f of food" [value]="f.value">{{ f.name }}</mat-option>
+      </mat-select>
+    </mat-form-field><br><br>
+
+    <!--MatSlider-->
+    <mat-form-field>
+      <input matInput type="text" placeholder="Note /10 ?" [disabled]="true">
+      <mat-slider formControlName="note" min="0" max="10"></mat-slider>
+      <span matPrefix>0</span>
+      <span matSuffix>{{ form.get('note').value }}</span>
+    </mat-form-field>
+
+    <!--MatDatepicker-->
+    <mat-form-field>
+      <input matInput type="text" placeholder="Votre agenda ?" [disabled]="true">
+      <input matInput type="text" formControlName="agenda" [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!--MatDatepicker + custom icon-->
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" placeholder="Votre agenda ?" [disabled]="true">
+      <input matInput type="text" formControlName="agendaBis" [matDatepicker]="DatepickerFrom">
+      <mat-datepicker-toggle matSuffix [for]="DatepickerFrom">
+        <mat-icon matDatepickerToggleIcon>event_available</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #DatepickerFrom></mat-datepicker>
+    </mat-form-field><br><br>
+
+    <!--floatPlaceholder-->
+    <mat-form-field floatPlaceholder="always">
+      <input matInput type="text" placeholder="Directive floatPlaceholder">
+    </mat-form-field><br><br>
+
+    <!--hintLabel-->
+    <mat-form-field hintLabel="Maximum 10 caractères">
+      <input type="text" matInput placeholder="Directive hintLabel">
+    </mat-form-field><br><br>
+
+    <!--MatHint avec align=start ou end -->
+    <mat-form-field>
+      <mat-hint align="end">Maximum 10 caractères</mat-hint>
+      <input type="text" matInput placeholder="Balise <mat-hint> avec positionnement du texte avec align">
+    </mat-form-field><br><br>
+
+    <!--MatIcon + matSuffix/matPrefix-->
+    <mat-form-field>
+      <input matInput placeholder="Entrez votre email" formControlName="email">
+      <mat-error *ngIf="form.get('email').invalid">{{ getErrorMessage() }}</mat-error>
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field><br><br>
+
+    <mat-form-field floatPlaceholder="always">
+      <input type="password" matInput placeholder="Entrez votre mot de passe">
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field><br><br>
+
+
+    <!--Submit button-->
     <button mat-raised-button>Valider</button><br><br>
 
+    <!--Form value infos-->
     <pre>{{ form.value | json }}</pre>
 
   </form>

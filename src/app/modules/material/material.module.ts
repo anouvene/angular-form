@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import 'hammerjs/hammer';
+
 import { MatFormFieldModule,
          MatInputModule,
          MatCheckboxModule,
          MatRadioModule,
          MatSlideToggleModule,
          MatCardModule,
-         MatButtonModule } from '@angular/material';
+         MatButtonModule,
+         MatIconModule,
+         MatSelectModule,
+         MatSliderModule,
+         MatDatepickerModule,
+         MatNativeDateModule } from '@angular/material';
 
 const MATERIAL = [
   MatFormFieldModule,
@@ -15,7 +22,12 @@ const MATERIAL = [
   MatRadioModule,
   MatSlideToggleModule,
   MatCardModule,
-  MatButtonModule
+  MatButtonModule,
+  MatIconModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormControl, Validator} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -11,6 +11,11 @@ export class HomeComponent implements OnInit {
   public form: FormGroup;
 
   public activites: string[] = ['Sport', 'Ciné', 'Musique'];
+  public food: {name: string, value: string}[] = [
+    {name: 'Pain', value: 'pain'},
+    {name: 'Pizza', value: 'pizza'},
+    {name: 'Pate', value: 'pate'},
+  ];
 
   constructor(private fb: FormBuilder) { }
 
@@ -21,10 +26,25 @@ export class HomeComponent implements OnInit {
       sexe: [''],
       news: [''],
       hobby: [''],
+      email: ['', [Validators.required, Validators.email]],
+      food: [''],
+      note: [''],
+      agenda: [''],
+      agendaBis: ['']
     });
   }
 
   public register() {
     console.log(this.form.value);
+  }
+
+  public getErrorMessage(): string {
+    if (this.form.get('email').hasError('required')) {
+      return 'Email required';
+    } else if (this.form.get('email').hasError('email')) {
+      return 'Email incorrect';
+    }
+
+    return '';
   }
 }
