@@ -27,11 +27,20 @@
       </mat-radio-group>
     </mat-form-field>
 
+    <mat-form-field>
+      <input matInput type="text" placeholder="Votre activité favorite ? {{ activiteFavorite}}" [disabled]="true">
+      <mat-select [(value)]="activiteFavorite" multiple>
+        <mat-option *ngFor="let activite of activites" [value]="activite">
+          {{ activite }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br><br>
+
     <!--MatInput-->
     <mat-form-field>
       <input matInput type="text" placeholder="Votre suggestion ?" [disabled]="true">
       <textarea matInput type="text" formControlName="request" value="..."></textarea>
-    </mat-form-field>
+    </mat-form-field><br><br>
 
     <!--MatSlideToggle-->
     <mat-form-field>
@@ -46,6 +55,17 @@
       <input matInput type="text" placeholder="Food ?" [disabled]="true">
       <mat-select formControlName="food" placeholder="Food ?">
         <mat-option *ngFor="let f of food" [value]="f.value">{{ f.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" placeholder="Vos principales compétences ? {{ mySkills}}" [disabled]="true">
+      <mat-select [(value)]="mySkills" multiple>
+        <mat-optgroup *ngFor="let group of skills" [label]="group.skill">
+          <mat-option *ngFor="let skill of group.skillsGroup" [value]="skill">
+            {{ skill }}
+          </mat-option>
+        </mat-optgroup>
       </mat-select>
     </mat-form-field><br><br>
 

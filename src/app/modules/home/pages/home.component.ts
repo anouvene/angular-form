@@ -10,11 +10,18 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class HomeComponent implements OnInit {
   public form: FormGroup;
 
+  public activiteFavorite: string;
   public activites: string[] = ['Sport', 'Ciné', 'Musique'];
   public food: {name: string, value: string}[] = [
     {name: 'Pain', value: 'pain'},
     {name: 'Pizza', value: 'pizza'},
     {name: 'Pate', value: 'pate'},
+  ];
+
+  public mySkills: string;
+  public skills: {skill: string, skillsGroup: string[]}[] = [
+    {skill: 'Programmation', skillsGroup: ['Java', 'PHP', 'Javascript']},
+    {skill: 'Languages', skillsGroup: ['French', 'English', 'Vietnamese']}
   ];
 
   constructor(private fb: FormBuilder) { }
