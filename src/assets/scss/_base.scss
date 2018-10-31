@@ -1,5 +1,10 @@
 body { background-color: #fff; }
 
+.mat-raised-button { right: 10px; display: inline-block; }
+// Sidenav
+.mat-slide-toggle { display: inline-block; margin-right: 20px}
+.mat-sidenav { width: 200px; }
+
 footer {
   @extend .navbar;
   width: 100%;

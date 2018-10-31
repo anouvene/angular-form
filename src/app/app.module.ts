@@ -11,6 +11,8 @@ import { HomeModule } from './modules/home/home.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '@app/modules/material/material.module';
+
 
 @NgModule({
   declarations: [
@@ -29,11 +31,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
 
     // features
+    MaterialModule,
     HomeModule,
 
     // app
     AppRoutingModule
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })

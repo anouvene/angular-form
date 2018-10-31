@@ -1,6 +1,5 @@
 <div id="content" class="container">
   <form [formGroup]="form" class="col-8 mx-auto" (submit)="register()">
-
     <!--MatCheckbox-->
     <mat-form-field>
       <input matInput type="text" placeholder="Vegan ?" [disabled]="true">
@@ -120,7 +119,7 @@
       <input matInput placeholder="Entrez votre email" formControlName="email">
       <mat-error *ngIf="form.get('email').invalid">{{ getErrorMessage() }}</mat-error>
       <mat-icon matSuffix>email</mat-icon>
-    </mat-form-field><br><br>
+    </mat-form-field>
 
     <mat-form-field floatPlaceholder="always">
       <input type="password" matInput placeholder="Entrez votre mot de passe">
@@ -134,16 +133,38 @@
              placeholder="Choisissez votre pays favori"
              formControlName="country"
              [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="afficherPays">
+      <mat-autocomplete #auto [displayWith]="afficherPays">
         <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
           {{ country.name }}
         </mat-option>
       </mat-autocomplete>
-    </mat-form-field>
+    </mat-form-field><br><br>
+
+    <!--Menu-->
+    <a mat-raised-button color="warn" [matMenuTriggerFor]="menu1">Menu</a><br><br>
+    <mat-menu #menu1>
+      <button mat-menu-item [matMenuTriggerFor]="menu2">One</button>
+      <button mat-menu-item>Two</button>
+      <button mat-menu-item>Three</button>
+    </mat-menu>
+    <mat-menu #menu2>
+      <button mat-menu-item>Four</button>
+      <button mat-menu-item>Five</button>
+      <button mat-menu-item>Six</button>
+    </mat-menu>
 
 
     <!--Submit button-->
-    <button mat-raised-button>Valider</button><br><br>
+    <button mat-raised-button color="primary">Valider</button>
+    <button mat-button color="primary">primary</button>
+    <button mat-button color="accent">accent</button>
+    <button mat-button color="warn">warn</button>
+    <button mat-button disabled>disabled</button>
+    <button mat-fab color="primary">X</button>
+    <button mat-mini-fab color="accent">X</button>
+    <button mat-mini-fab color="warn">X</button>
+
+    <br><br>
 
     <!--Form value infos-->
     <pre>{{ form.value | json }}</pre>

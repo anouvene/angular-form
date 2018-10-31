@@ -1,3 +1,38 @@
-<app-nav></app-nav>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<mat-sidenav-container>
+
+  <!--Menu gauche-->
+  <mat-sidenav #sidenav1 mode="over" [opened]="open" (closed)="fermer()">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-action">Poire</li>
+      <li class="list-group-item list-group-item-action">Pomme</li>
+      <li class="list-group-item list-group-item-action">Ananas</li>
+      <li class="list-group-item list-group-item-action">Cerise</li>
+    </ul>
+  </mat-sidenav>
+
+  <!--Menu droite-->
+  <mat-sidenav #sidenav2 mode="push" position="end" [opened]="open" (closed)="fermer()">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-action">Poisson</li>
+      <li class="list-group-item list-group-item-action">Légumes</li>
+      <li class="list-group-item list-group-item-action">Viande</li>
+      <li class="list-group-item list-group-item-action">Epicerie</li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!--Bootstrap Navbar-->
+    <app-nav>
+      <mat-checkbox [(ngModel)]="open">{{ open ? 'Open' : 'Close' }}</mat-checkbox>
+      <mat-slide-toggle [(ngModel)]="open">{{ open ? 'On' : 'Off' }}</mat-slide-toggle>
+      <button mat-raised-button (click)="sidenav1.toggle(); sidenav2.toggle();">Open left/right sidebar menu</button>
+    </app-nav>
+
+    <!--Composants-->
+    <router-outlet></router-outlet>
+
+    <!--Footer-->
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

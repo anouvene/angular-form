@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  public title: string = 'app';
+  public open: boolean = false;
+
+  public fermer() {
+    this.open = false;
+  }
+
 }
