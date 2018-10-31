@@ -1,6 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
+import { DateAdapter } from '@angular/material/core';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/startWith';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +30,19 @@ export class HomeComponent implements OnInit {
     {skill: 'Languages', skillsGroup: ['French', 'English', 'Vietnamese']}
   ];
 
-  constructor(private fb: FormBuilder) { }
+  // Logs events
+  public evenements: string[] = [];
+
+  // Autocomplete
+  public countries: any = [
+    {name: 'Italie'},
+    {name: 'France'},
+    {name: 'Espagne'},
+    {name: 'Royaume Uni'}
+  ];
+  public filteredCountries: Observable<any> = this.countries;
+
+  constructor(private fb: FormBuilder, private adapter: DateAdapter<any>) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -37,7 +55,17 @@ export class HomeComponent implements OnInit {
       food: [''],
       note: [''],
       agenda: [''],
-      agendaBis: ['']
+      agendaBis: [''],
+      country: ['']
+    });
+
+    this.filteredCountries = this.form.get('country').valueChanges.startWith(null).map(input => {
+      if (!input) {
+        return this.countries;
+      } else {
+        console.log(input);
+        return this.countries.filter(country => country.name.toLowerCase().startsWith(input.toString().toLowerCase()));
+      }
     });
   }
 
@@ -54,4 +82,41 @@ export class HomeComponent implements OnInit {
 
     return '';
   }
+
+  /**
+   * Datepicker Events
+   * @param type
+   * @param evenement
+   */
+  public ajouterEvenement(type: string, evenement: MatDatepickerInputEvent<Date>) {
+    this.evenements.push(`${type}: ${evenement.value}`);
+  }
+
+  /**
+   * Local date adapter
+   * @param locale
+   */
+  public setLocale(locale: string) {
+    // console.log('Locale: ', locale);
+    this.adapter.setLocale(locale);
+  }
+
+  /**
+   * Country filter with input field
+   * @param input
+   * @returns {any}
+   */
+  public filtrerPays(input: string) {
+    return this.filteredCountries = this.countries.filter(country => country.name.toLowerCase().includes(input.toLowerCase()));
+  }
+
+  /**
+   * Display country name value
+   * @param country
+   * @returns {any}
+   */
+  public afficherPays (country) {
+    return country ? country.name : country;
+  }
+
 }

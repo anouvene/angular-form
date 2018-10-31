@@ -53,7 +53,7 @@
     <!--MatSelect/MatOption-->
     <mat-form-field>
       <input matInput type="text" placeholder="Food ?" [disabled]="true">
-      <mat-select formControlName="food" placeholder="Food ?">
+      <mat-select formControlName="food">
         <mat-option *ngFor="let f of food" [value]="f.value">{{ f.name }}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -80,19 +80,23 @@
     <!--MatDatepicker-->
     <mat-form-field>
       <input matInput type="text" placeholder="Votre agenda ?" [disabled]="true">
-      <input matInput type="text" formControlName="agenda" [matDatepicker]="picker">
+      <input matInput type="text"
+             formControlName="agenda"
+             [matDatepicker]="picker"
+             (dateInput)="ajouterEvenement('input', $event)"
+             (dateChange)="ajouterEvenement('change', $event)">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <!--MatDatepicker + custom icon-->
     <mat-form-field class="example-full-width">
-      <input matInput type="text" placeholder="Votre agenda ?" [disabled]="true">
-      <input matInput type="text" formControlName="agendaBis" [matDatepicker]="DatepickerFrom">
+      <input matInput type="text" placeholder="Votre agenda ?" [disabled]="true" #locale value="fr-FR">
+      <input matInput type="text" formControlName="agendaBis" [matDatepicker]="DatepickerFrom" (dateChange)="setLocale(locale.value)">
       <mat-datepicker-toggle matSuffix [for]="DatepickerFrom">
         <mat-icon matDatepickerToggleIcon>event_available</mat-icon>
       </mat-datepicker-toggle>
-      <mat-datepicker #DatepickerFrom></mat-datepicker>
+      <mat-datepicker #DatepickerFrom startView="year"></mat-datepicker>
     </mat-form-field><br><br>
 
     <!--floatPlaceholder-->
@@ -123,12 +127,30 @@
       <mat-icon matSuffix>lock</mat-icon>
     </mat-form-field><br><br>
 
+    <!--Auto-complete-->
+    <mat-form-field>
+      <input matInput type="text"
+             placeholder="Choisissez votre pays favori"
+             formControlName="country"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="afficherPays">
+        <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
+          {{ country.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
 
     <!--Submit button-->
     <button mat-raised-button>Valider</button><br><br>
 
     <!--Form value infos-->
     <pre>{{ form.value | json }}</pre>
+
+    <!--Datepicker events dateInput & dateChange-->
+    <pre>
+      <div *ngFor="let e of evenements">{{ e }}</div>
+    </pre>
 
   </form>
 </div>

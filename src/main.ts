@@ -5,7 +5,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 // Evènements tacticles pour tablettes et mobiles
-import 'hammerjs';
+import 'hammerjs/hammer';
 
 if (environment.production) {
   enableProdMode();
