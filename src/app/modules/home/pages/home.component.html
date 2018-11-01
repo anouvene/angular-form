@@ -1,4 +1,51 @@
 <div id="content" class="container">
+  <!--MatToolbar-->
+  <mat-toolbar color="accent">
+    <div>Material toolbar</div>
+    <div class="toolbar-content"></div>
+    <div>Menu</div>
+  </mat-toolbar>
+
+  <!--MatList-->
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h3>Navigation</h3>
+      <mat-list dense>
+        <mat-icon matListIcon>message</mat-icon>
+        <p matLine>Texte de liste </p>
+        <p matLine>sur plusieurs lignes</p>
+        <mat-list-item>Avatar</mat-list-item>
+        <mat-list-item>La ligne verte</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Leviathan</mat-list-item>
+        <mat-list-item>Immortels</mat-list-item>
+        <mat-list-item>Game of throne</mat-list-item>
+      </mat-list>
+
+      <!--MatSelectionList-->
+      <mat-selection-list #random>
+        <mat-list-option>Fruit</mat-list-option>
+        <mat-list-option>Légume</mat-list-option>
+        <mat-list-option>Poisson</mat-list-option>
+      </mat-selection-list>
+      <p>{{ random.selectedOptions.selected.length }}</p>
+    </div>
+  </div>
+
+  <!--MatGridList-->
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <h3>Grille</h3>
+      <mat-grid-list cols="2" rowHeight="2:1" gutterSize="2px">
+        <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+        <mat-grid-tile>5</mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
   <form [formGroup]="form" class="col-8 mx-auto" (submit)="register()">
     <!--MatCheckbox-->
     <mat-form-field>
@@ -175,4 +222,5 @@
     </pre>
 
   </form>
+
 </div>

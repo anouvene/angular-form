@@ -15,7 +15,10 @@ import { MatFormFieldModule,
          MatAutocompleteModule,
          MatButtonModule,
          MatMenuModule,
-         MatSidenavModule } from '@angular/material';
+         MatSidenavModule,
+         MatToolbarModule,
+         MatListModule,
+         MatGridListModule } from '@angular/material';
 
 const MATERIAL = [
   MatFormFieldModule,
@@ -33,7 +36,10 @@ const MATERIAL = [
   MatAutocompleteModule,
   MatButtonModule,
   MatMenuModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
+  MatGridListModule
 ];
 
 @NgModule({

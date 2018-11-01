@@ -13,6 +13,11 @@ input.mat-input-element { margin-bottom: 1em; font-weight: bold; }
   vertical-align: middle;
 }
 
+// Toolbar & grid
+.toolbar-content { flex: 1 1 auto; }
+mat-grid-list { width: 100%; }
+mat-grid-tile { background-color: #ffd740; }
+
 // Calendear icon
 .mat-form-field-appearance-legacy
 .mat-form-field-prefix
