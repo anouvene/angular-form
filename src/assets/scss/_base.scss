@@ -1,17 +1,23 @@
-body { background-color: #fff; }
+html, body { height: 100%; }
+body { min-height: 100%; background-color: #fff; }
 
-.mat-raised-button { right: 10px; display: inline-block; }
-// Sidenav
-.mat-slide-toggle { display: inline-block; margin-right: 20px}
-.mat-sidenav { width: 200px; }
+.mat-drawer-container{ height: 100%; }
+  .mat-raised-button { right: 10px; display: inline-block; }
+  // Sidenav
+  .mat-slide-toggle { display: inline-block; margin-right: 20px}
+  .mat-sidenav { width: 200px; }
 
-footer {
-  @extend .navbar;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  background-color: #f8f9fa !important;
-  color: #fff;
-  text-align: center;
-}
+  footer {
+    @extend .navbar;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #f8f9fa !important;
+    color: #fff;
+    text-align: center;
+  }
+
+  .text-muted {
+    margin: 0 auto;
+  }

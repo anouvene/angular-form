@@ -6,7 +6,6 @@ import { MatFormFieldModule,
          MatCheckboxModule,
          MatRadioModule,
          MatSlideToggleModule,
-         MatCardModule,
          MatIconModule,
          MatSelectModule,
          MatSliderModule,
@@ -18,7 +17,14 @@ import { MatFormFieldModule,
          MatSidenavModule,
          MatToolbarModule,
          MatListModule,
-         MatGridListModule } from '@angular/material';
+         MatGridListModule,
+         MatCardModule,
+         MatStepperModule,
+         MatTabsModule,
+         MatExpansionModule,
+         MatChipsModule,
+         MatTooltipModule
+} from '@angular/material';
 
 const MATERIAL = [
   MatFormFieldModule,
@@ -26,7 +32,6 @@ const MATERIAL = [
   MatCheckboxModule,
   MatRadioModule,
   MatSlideToggleModule,
-  MatCardModule,
   MatButtonModule,
   MatIconModule,
   MatSelectModule,
@@ -39,7 +44,13 @@ const MATERIAL = [
   MatSidenavModule,
   MatToolbarModule,
   MatListModule,
-  MatGridListModule
+  MatGridListModule,
+  MatCardModule,
+  MatStepperModule,
+  MatTabsModule,
+  MatExpansionModule,
+  MatChipsModule,
+  MatTooltipModule
 ];
 
 @NgModule({

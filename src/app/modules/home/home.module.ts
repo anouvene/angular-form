@@ -8,12 +8,15 @@ import { HomeRoutingModule } from './home.routing';
 import { SharedModule } from '@app/shared';
 
 import { MaterialModule } from '@app/modules/material/material.module';
-
+import { CardOverviewComponent } from './card-overview/card-overview.component';
+import { StepperOverviewComponent } from './stepper-overview/stepper-overview.component';
 
 @NgModule({
     declarations: [
         HomeComponent,
-        MyModalComponent
+        MyModalComponent,
+        CardOverviewComponent,
+        StepperOverviewComponent
     ],
     imports: [
         SharedModule,

@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+}
+
+.content {
+  width: 250px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.mat-card-content {
+  display: flex;
+  flex: 1;
+}

@@ -7,6 +7,8 @@ import { DateAdapter } from '@angular/material/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
+import { MatChipInputEvent } from '@angular/material';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-home',
@@ -41,6 +43,20 @@ export class HomeComponent implements OnInit {
     {name: 'Royaume Uni'}
   ];
   public filteredCountries: Observable<any> = this.countries;
+
+  // Etat du panneau
+  public etatDuPanneau = false;
+
+  // entrée, virgule, point-virgule
+  public separateurs = [ENTER, COMMA, 186];
+
+  // Liste à puces pays
+  public pays: {nom: string}[] = [
+    { nom: 'Chine' },
+    { nom: 'France' },
+    { nom: 'Italie' },
+    { nom: 'Pays-Bas' }
+  ];
 
   constructor(private fb: FormBuilder, private adapter: DateAdapter<any>) { }
 
@@ -118,5 +134,42 @@ export class HomeComponent implements OnInit {
   public afficherPays (country) {
     return country ? country.name : country;
   }
+
+  /**
+   * Tabs
+   * @param val
+   */
+  public log(val) {
+    console.log(val);
+  }
+
+  /**
+   * Ajout d'un pays dans la liste à puces pays
+   * @param event Chip Input Event
+   */
+  public addChip(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Ajouter un pays dans la liste à puces pays
+    if (value) {
+      this.pays.push({ nom: value.trim() });
+    }
+
+    // Effacer le input
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  /**
+   * Retirer une puce en mettant à jour la liste à puce pays
+   * @param pays pays à supprimer
+   */
+  public removeChip(pays: { nom: string }): void {
+    console.log(pays);
+    this.pays = this.pays.filter(p => p !== pays );
+  }
+
 
 }

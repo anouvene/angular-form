@@ -1,10 +1,12 @@
 <div id="content" class="container">
   <!--MatToolbar-->
-  <mat-toolbar color="accent">
-    <div>Material toolbar</div>
-    <div class="toolbar-content"></div>
-    <div>Menu</div>
-  </mat-toolbar>
+  <div class="row">
+    <mat-toolbar class="col-12 mx-auto" color="accent">
+      <div>Material toolbar</div>
+      <div class="toolbar-content"></div>
+      <div>Menu</div>
+    </mat-toolbar>
+  </div><br><br>
 
   <!--MatList-->
   <div class="row">
@@ -30,7 +32,7 @@
       </mat-selection-list>
       <p>{{ random.selectedOptions.selected.length }}</p>
     </div>
-  </div>
+  </div><br><br>
 
   <!--MatGridList-->
   <div class="row">
@@ -44,8 +46,164 @@
         <mat-grid-tile>5</mat-grid-tile>
       </mat-grid-list>
     </div>
-  </div>
+  </div><br><br>
 
+  <!--MatCard-->
+  <div class="row">
+    <mat-card class="col-12 mx-auto">
+      <mat-card-title>Titre</mat-card-title>
+      <mat-card-subtitle>Sous-titre</mat-card-subtitle>
+      <img mat-card-image src="https://images.unsplash.com/photo-1541777490254-a50eb9045486?ixlib=rb-0.3.5&s=cc05b91f2f5aef7f5002093cfd818495&auto=format&fit=crop&w=1234&q=80" alt="" />
+      <mat-card-actions class="mx-auto">
+        <button mat-raised-button color="primary">Facebook</button>
+        <button mat-raised-button color="warn">G+</button>
+        <button mat-raised-button color="accent">Viadeo</button>
+      </mat-card-actions>
+      <mat-card-content>
+        Dum apud Persas, ut supra narravimus, perfidia regis motus agitat insperatos, et in eois tractibus bella r
+        ediviva consurgunt, anno sexto decimo et eo diutius post Nepotiani exitium, saeviens per urbem aeternam urebat
+        cuncta Bellona, ex primordiis minimis ad clades excita luctuosas, quas obliterasset utinam iuge silentium! ne
+        forte paria quandoque temptentur, plus exemplis generalibus nocitura quam delictis.
+
+        Quo cognito Constantius ultra mortalem modum exarsit ac nequo casu idem Gallus de futuris incertus agitare
+        quaedam conducentia saluti suae per itinera conaretur, remoti sunt omnes de industria milites agentes in
+        civitatibus perviis.
+      </mat-card-content>
+      <mat-card-footer class="text-center text-info"><i>@photo by Antoine Nouvene november 2018</i></mat-card-footer>
+    </mat-card>
+  </div><br><br>
+
+  <!--MatStepper-->
+  <div class="row">
+    <mat-horizontal-stepper class="col-12 mx-auto">
+      <mat-step label="Step 1">
+        <h3>Contenu étape 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores commodi consequatur dignissimos error eum eveniet fugit, libero odit perferendis placeat quia repellendus rerum sequi sint suscipit tempore ut velit voluptas!
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores commodi consequatur dignissimos error eum eveniet fugit, libero odit perferendis placeat quia repellendus rerum sequi sint suscipit tempore ut velit voluptas!</p>
+      </mat-step>
+      <mat-step label="Step 2">
+        <h3>Contenu étape 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores commodi consequatur dignissimos error eum eveniet fugit, libero odit perferendis placeat quia repellendus rerum sequi sint suscipit tempore ut velit voluptas!
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores commodi consequatur dignissimos error eum eveniet fugit, libero odit perferendis placeat quia repellendus rerum sequi sint suscipit tempore ut velit voluptas!</p>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div><br><br>
+
+  <!--MatTabs-->
+  <div class="row">
+    <mat-tab-group class="col-12 mx-auto" (selectedTabChange)="log($event)" (focusChange)="log($event)" dynamicHeight>
+      <mat-tab label="Taille">
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex,
+          ugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam
+          voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus.
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>Caractéristiques</ng-template>
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero!
+          Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>Avis internautes</ng-template>
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>Nous vous conseillons également</ng-template>
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet asperiores dolores doloribus earum ex, fugiat modi officia provident vero! Debitis dignissimos nam ratione repellat sapiente soluta tempore totam voluptatem.
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon color="warn">favorite</mat-icon>
+        </ng-template>
+        <div class="content">Nos coups de coeurs ... Bientôt disponibles</div>
+      </mat-tab>
+    </mat-tab-group>
+  </div><br><br>
+
+  <!--MatExpansion-->
+  <div class="row">
+    <mat-accordion class="col-12 mx-auto" multi="false">
+      <!--Panel 1-->
+      <mat-expansion-panel
+        (opened)="etatDuPanneau = true"
+        (closed)="etatDuPanneau = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Titre panel</mat-panel-title>
+          <mat-panel-description>Je suis {{ etatDuPanneau ? 'ouvert' : 'fermé' }}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <section>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias corporis dolorum ea enim
+            esse expedita ...</p>
+        </section>
+        <mat-action-row>
+          <button mat-raised-button color="warn">Clic ici !</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+      <!--Panel 2-->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Titre panel</mat-panel-title>
+          <mat-panel-description>Une brève description ici ...</mat-panel-description>
+        </mat-expansion-panel-header>
+        <section>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias corporis dolorum ea enim
+          esse expedita fuga id illum ipsum laborum minima minus necessitatibus officiis perspiciatis quisquam,
+            temporibus totam voluptate!</p>
+        </section>
+        <mat-action-row>
+          <button mat-raised-button color="warn">Clic ici !</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div><br><br>
+
+  <!--MapChips-->
+  <div class="row">
+    <mat-chip-list class="col-12 mx-auto">
+      <mat-chip selectable="false">Voyage</mat-chip>
+      <mat-chip color="primary">Viet Nam</mat-chip>
+      <mat-chip color="accent">Canada</mat-chip>
+      <mat-basic-chip>chip</mat-basic-chip>
+    </mat-chip-list>
+  </div><br><br>
+
+  <!--MapIcon-->
+  <div class="row">
+    <mat-icon class="fa fa-envelope"></mat-icon>
+  </div><br><br>
+
+  <!--MapChips + input -->
+  <div class="row">
+    <mat-chip-list class="col-12 mx-auto" #chipList>
+      <!--Puces-->
+      <mat-chip *ngFor="let p of pays" removable (removed)="removeChip(p)">
+        {{ p.nom }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+
+      <!--Champ de saisie pays-->
+      <input placeholder="Nouveau pays ..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separateurs"
+             (matChipInputTokenEnd)="addChip($event)" />
+    </mat-chip-list>
+  </div><br><br>
+
+  <!--Material form components-->
   <form [formGroup]="form" class="col-8 mx-auto" (submit)="register()">
     <!--MatCheckbox-->
     <mat-form-field>

@@ -31,3 +31,19 @@ mat-grid-tile { background-color: #ffd740; }
   color: black;
   line-height: 1.125;
 }
+
+.content { padding: 15px; }
+
+// Puces
+.mat-basic-chip {
+  display: inline-block;
+  margin: 10px 0 0 0;
+  padding: 0 25px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+  border-radius: 30px;
+  background-color: darkorange;
+  cursor: pointer;
+  outline: none;
+}

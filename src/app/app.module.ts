@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 
@@ -10,7 +10,7 @@ import { HomeModule } from './modules/home/home.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@app/modules/material/material.module';
 
 
@@ -25,6 +25,7 @@ import { MaterialModule } from '@app/modules/material/material.module';
 
     // 3rd party
     ReactiveFormsModule,
+    FormsModule,
 
     // core & shared
     CoreModule,
