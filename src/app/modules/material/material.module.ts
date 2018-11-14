@@ -7,6 +7,7 @@ import { MatFormFieldModule,
          MatRadioModule,
          MatSlideToggleModule,
          MatIconModule,
+         MatIconRegistry,
          MatSelectModule,
          MatSliderModule,
          MatDatepickerModule,
@@ -23,7 +24,12 @@ import { MatFormFieldModule,
          MatTabsModule,
          MatExpansionModule,
          MatChipsModule,
-         MatTooltipModule
+         MatProgressSpinnerModule,
+         MatProgressBarModule,
+         MatDialogModule,
+         MatTooltipModule,
+         MatSnackBarModule
+
 } from '@angular/material';
 
 const MATERIAL = [
@@ -50,7 +56,12 @@ const MATERIAL = [
   MatTabsModule,
   MatExpansionModule,
   MatChipsModule,
-  MatTooltipModule
+  MatProgressSpinnerModule,
+  MatProgressBarModule,
+  MatDialogModule,
+  MatTooltipModule,
+  MatSnackBarModule
+
 ];
 
 @NgModule({
@@ -59,6 +70,7 @@ const MATERIAL = [
     ...MATERIAL // Operateur spread transformant un array en item list
   ],
   exports: MATERIAL, // Rendre Material disponible pour tous les autres modules de l'application
-  declarations: []
+  declarations: [],
+  providers: [ MatIconRegistry ]
 })
 export class MaterialModule { }

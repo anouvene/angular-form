@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 import { DateAdapter } from '@angular/material/core';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable, timer } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
-import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+
+// Material modules services
+import { MatIconRegistry, MatChipInputEvent, MatDialog } from '@angular/material';
+
+// Dialog component
+import { DialogComponent } from '@app/modules/home/dialog/dialog.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   public form: FormGroup;
 
   public activiteFavorite: string;
@@ -58,7 +65,16 @@ export class HomeComponent implements OnInit {
     { nom: 'Pays-Bas' }
   ];
 
-  constructor(private fb: FormBuilder, private adapter: DateAdapter<any>) { }
+  // Progress spinner
+  public color = 'primary';
+  public progression: number = 0;
+  public sub;
+
+  constructor(
+    private fb: FormBuilder,
+    private adapter: DateAdapter<any>,
+    private mir: MatIconRegistry,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -83,6 +99,13 @@ export class HomeComponent implements OnInit {
         return this.countries.filter(country => country.name.toLowerCase().startsWith(input.toString().toLowerCase()));
       }
     });
+
+    // MatIconRegistry
+    this.mir.registerFontClassAlias('fontawesome', 'fa');
+
+    // Progress spinner
+    this.createCounter();
+
   }
 
   public register() {
@@ -171,5 +194,51 @@ export class HomeComponent implements OnInit {
     this.pays = this.pays.filter(p => p !== pays );
   }
 
+
+  /**
+   * Count for spinner progress bar
+   */
+  public createCounter(): void {
+    this.sub = timer(0, 100).pipe(
+      takeWhile(x => x <= 100)
+    )
+    .subscribe(x => {
+      this.progression = x;
+    });
+  }
+
+  /**
+   * Reset spinner progress bar
+   */
+  public reset(): void {
+    this.color = 'primary';
+    this.sub.unsubscribe();
+    this.progression = 0;
+    this.createCounter();
+  }
+
+  /**
+   * Unsubscribe progress spinner and bar
+   */
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
+  /**
+   * Open dialog treatment
+   * And create an instance of DialogComponent
+   */
+  public openDialog(): void {
+     const dialogRef = this.dialog.open(DialogComponent, {
+      width: '500px',
+      height: '300px',
+      data: {nom: 'Poncet', prenom: 'Antonin'}
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
+    });
+
+  }
 
 }

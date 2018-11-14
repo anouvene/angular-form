@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Hello world !</h2>
+
+<mat-dialog-content>
+  <h3>Le contenu de la dialog</h3>
+  <div>Nom: {{ data.nom }}</div>
+  <div>Prénom: {{ data.prenom }}</div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close sans data</button>
+  <button mat-button [mat-dialog-close]="data">Close avec data</button>
+</mat-dialog-actions>

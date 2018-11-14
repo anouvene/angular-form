@@ -181,11 +181,6 @@
     </mat-chip-list>
   </div><br><br>
 
-  <!--MapIcon-->
-  <div class="row">
-    <mat-icon class="fa fa-envelope"></mat-icon>
-  </div><br><br>
-
   <!--MapChips + input -->
   <div class="row">
     <mat-chip-list class="col-12 mx-auto" #chipList>
@@ -202,6 +197,110 @@
              (matChipInputTokenEnd)="addChip($event)" />
     </mat-chip-list>
   </div><br><br>
+
+  <!--MatIcon-->
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <mat-icon fontSet="fa" class="fa-times fa-2x"></mat-icon>
+      <mat-icon class="fa fa-times fa-2x"></mat-icon>
+      <br>
+      <button mat-raised-button color="accent">
+        <mat-icon class="fa fa-times"></mat-icon>
+        Cancel
+      </button>
+      <button mat-raised-button class="mx-2" color="primary">
+        <mat-icon fontSet="fa" class="fa-check fa-2x"></mat-icon>
+        &nbsp;&nbsp;Confirm
+      </button>
+      <button mat-raised-button>
+        <mat-icon class="md-24 md-dark orange600">face</mat-icon>
+        &nbsp;&nbsp;Voir
+      </button>
+    </div>
+  </div><br><br>
+
+  <!--MatProgress-->
+  <div class="row">
+    <mat-card class="col-6">
+      <mat-card-content>
+        <h2 class="exemple-h2">Progress spinner configuration</h2>
+
+        <section class="exemple-section">
+          <label class="exemple-margin">Color:</label>
+          <mat-radio-group [(ngModel)]="color">
+            <mat-radio-button class="exemple-margin" value="primary">
+              Primary
+            </mat-radio-button>
+            <mat-radio-button class="exemple-margin" value="accent">
+              Accent
+            </mat-radio-button>
+            <mat-radio-button class="exemple-margin" value="warn">
+              Warn
+            </mat-radio-button>
+          </mat-radio-group>
+        </section>
+
+        <section class="exemple-section">
+          <button mat-raised-button class="exemple-margin" color="primary" (click)="reset()">Reset</button>
+        </section>
+      </mat-card-content>
+    </mat-card>
+
+    <!--Progress spiner déterminé-->
+    <mat-card class="col-3">
+      <mat-card-content>
+        <h2 class="text-center">Determiné</h2>
+        <mat-progress-spinner
+          class="mx-auto"
+          [color]="color"
+          mode="determinate"
+          [value]=progression>
+        </mat-progress-spinner>
+      </mat-card-content>
+    </mat-card>
+
+    <!--Progress spiner indéterminé-->
+    <mat-card class="col-3">
+      <mat-card-content>
+        <h2 class="text-center">Indéterminé</h2>
+        <button mat-button>
+          <mat-icon fontSet="fa" class="fas fa-redo-alt"> {{ progression }}</mat-icon>
+        </button><br>
+        <mat-progress-spinner
+          *ngIf="progression < 100"
+          class="mx-auto"
+          [color]="color"
+          mode="indeterminate">
+        </mat-progress-spinner>
+      </mat-card-content>
+    </mat-card>
+  </div><br><br>
+
+  <!--Progress bar-->
+  <div class="row">
+    <!--Determinate-->
+    <mat-progress-bar class="col-3 mx-auto" mode="determinate" bufferValue="100" value="30"></mat-progress-bar>
+
+    <!--Indeterminate-->
+    <mat-progress-bar class="col-3 mx-auto" mode="indeterminate"></mat-progress-bar>
+
+    <!--Buffer-->
+    <mat-progress-bar class="col-3 mx-auto" mode="buffer" bufferValue="50" value="30"></mat-progress-bar>
+
+    <!--Query-->
+    <mat-progress-bar class="col-3 mx-auto" mode="query"></mat-progress-bar>
+  </div><br><br>
+
+  <!--MatDialog-->
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <!--MatToolTip-->
+      <button matTooltip="Ouvrir une popub"
+              matTooltipPosition="above"
+              mat-raised-button
+              (click)="openDialog()">Open dialog</button>
+    </div>
+  </div>
 
   <!--Material form components-->
   <form [formGroup]="form" class="col-8 mx-auto" (submit)="register()">
