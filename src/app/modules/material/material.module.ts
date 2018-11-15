@@ -28,9 +28,16 @@ import { MatFormFieldModule,
          MatProgressBarModule,
          MatDialogModule,
          MatTooltipModule,
-         MatSnackBarModule
+         MatSnackBarModule,
+         MatTableModule,
+         MatPaginatorModule,
+         MatPaginatorIntl
 
 } from '@angular/material';
+
+import { HomeComponent } from '@app/modules/home/pages/home.component';
+
+
 
 const MATERIAL = [
   MatFormFieldModule,
@@ -60,7 +67,9 @@ const MATERIAL = [
   MatProgressBarModule,
   MatDialogModule,
   MatTooltipModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTableModule,
+  MatPaginatorModule
 
 ];
 
@@ -71,6 +80,6 @@ const MATERIAL = [
   ],
   exports: MATERIAL, // Rendre Material disponible pour tous les autres modules de l'application
   declarations: [],
-  providers: [ MatIconRegistry ]
+  providers: [ MatIconRegistry, { provide: MatPaginatorIntl, useClass: HomeComponent } ]
 })
 export class MaterialModule { }

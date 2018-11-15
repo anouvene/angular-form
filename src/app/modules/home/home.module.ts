@@ -11,6 +11,10 @@ import { MaterialModule } from '@app/modules/material/material.module';
 import { CardOverviewComponent } from './card-overview/card-overview.component';
 import { StepperOverviewComponent } from './stepper-overview/stepper-overview.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
+
+import { UserService } from '@app/core/services/user.service';
+
 
 @NgModule({
     declarations: [
@@ -18,7 +22,8 @@ import { DialogComponent } from './dialog/dialog.component';
         MyModalComponent,
         CardOverviewComponent,
         StepperOverviewComponent,
-        DialogComponent
+        DialogComponent,
+        SnackBarComponent
     ],
     imports: [
         SharedModule,
@@ -26,7 +31,7 @@ import { DialogComponent } from './dialog/dialog.component';
         MaterialModule,
     ],
     exports: [],
-    providers: [],
-    entryComponents: [MyModalComponent, DialogComponent]
+    providers: [UserService],
+    entryComponents: [MyModalComponent, DialogComponent, SnackBarComponent]
 })
 export class HomeModule {}

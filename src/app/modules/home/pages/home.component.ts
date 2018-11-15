@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
@@ -12,17 +12,29 @@ import 'rxjs/add/operator/startWith';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 // Material modules services
-import { MatIconRegistry, MatChipInputEvent, MatDialog } from '@angular/material';
+import {
+  MatIconRegistry,
+  MatChipInputEvent,
+  MatDialog,
+  MatDialogRef,
+  MatSnackBar
+} from '@angular/material';
 
 // Dialog component
 import { DialogComponent } from '@app/modules/home/dialog/dialog.component';
+import { SnackBarComponent } from '@app/modules/home/snack-bar/snack-bar.component';
+
+// MatTable + services + pagination
+import { MatTableDataSource, MatPaginator, MatPaginatorIntl } from '@angular/material';
+import { UserService } from '@app/core/services/user.service';
+import { UserModel } from '@app/core/models/user.model';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent extends MatPaginatorIntl implements OnInit, OnDestroy {
   public form: FormGroup;
 
   public activiteFavorite: string;
@@ -70,11 +82,24 @@ export class HomeComponent implements OnInit, OnDestroy {
   public progression: number = 0;
   public sub;
 
+  // Taleau d'utilisateurs
+  public users: UserModel[];
+  public dataSource: MatTableDataSource<UserModel>;
+  public displayedColumns: string[] = ['gender', 'cell', 'email', 'nat', 'phone'];
+  public itemsPerPageLabel: string = 'Utilisateurs par page'; // customize item per page label
+
+  // Référence locale pour la pagination
+  @ViewChild('paginator') public paginator: MatPaginator;
+
   constructor(
     private fb: FormBuilder,
     private adapter: DateAdapter<any>,
     private mir: MatIconRegistry,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private userService: UserService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -105,6 +130,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // Progress spinner
     this.createCounter();
+
+    // Get all users
+    this.userService.getAll().subscribe( users => {
+      this.users = users;
+      this.dataSource = new MatTableDataSource(this.users);
+      // Lier dataSource à la pagination
+      this.dataSource.paginator = this.paginator;
+    });
 
   }
 
@@ -194,7 +227,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.pays = this.pays.filter(p => p !== pays );
   }
 
-
   /**
    * Count for spinner progress bar
    */
@@ -229,7 +261,7 @@ export class HomeComponent implements OnInit, OnDestroy {
    * And create an instance of DialogComponent
    */
   public openDialog(): void {
-     const dialogRef = this.dialog.open(DialogComponent, {
+     const dialogRef: MatDialogRef<DialogComponent> = this.dialog.open(DialogComponent, {
       width: '500px',
       height: '300px',
       data: {nom: 'Poncet', prenom: 'Antonin'}
@@ -238,7 +270,24 @@ export class HomeComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(data => {
       console.log(data);
     });
+  }
 
+  public openSnackBar(message: string): void {
+    // const snackBarRef = this.snackBar.open(message, 'Fermer', {duration: 500});
+    const snackBarRef = this.snackBar.openFromComponent(SnackBarComponent, {data: {nom: 'Poncet', prenom: 'Antonin'}});
+
+    snackBarRef.onAction().subscribe(() => {
+      console.log('Le bouton de la snackbar a été cliqué !');
+    });
+
+    snackBarRef.afterOpened().subscribe(() => {
+      console.log('SnackBar ouvert !');
+    });
+
+    snackBarRef.afterDismissed().subscribe(data => {
+      console.log('SnackBar fermé !');
+      console.log(data);
+    });
   }
 
 }

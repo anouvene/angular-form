@@ -1,18 +1,29 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { JsonApiService } from './json-api.service';
-
-const routes = {
-    users: '/users'
-}
+import { UserModel } from '@app/core/models/user.model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
 
-    constructor(private jsonApiService: JsonApiService) {}
+  private url: string = 'https://randomuser.me/api/?results=100';
 
-    getAll() {
-        // this.
-    }
+  constructor(private httpClient: HttpClient) {}
 
+  getAll(): Observable<UserModel[]> {
+    return this.httpClient.get(this.url).map( (res: {results: any[], info: any}) => {
+      const users = res.results.map(user => {
+        const mappedUser = {
+          gender: user.gender,
+          cell: user.cell,
+          email: user.email,
+          nat: user.nat,
+          phone: user.phone
+        };
+        return mappedUser;
+      });
+      return users;
+    });
+  }
 }

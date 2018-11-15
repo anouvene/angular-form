@@ -295,11 +295,66 @@
   <div class="row">
     <div class="col-12 mx-auto">
       <!--MatToolTip-->
-      <button matTooltip="Ouvrir une popub"
+      <button mat-raised-button
+              matTooltip="Ouvrir une boîte de dialogue"
               matTooltipPosition="above"
-              mat-raised-button
+              matTooltipShowDelay="1000"
+              matTooltipHideDelay="1500"
               (click)="openDialog()">Open dialog</button>
+
+      <!--MatSnackBar-->
+      <button mat-raised-button
+              matTooltip="Ouvrir une snackBar"
+              matTooltipPosition="below"
+              matTooltipShowDelay="1000"
+              matTooltipHideDelay="1500"
+              (click)="openSnackBar('Hello world!')"
+              class="mx-2">Open snackBar</button>
     </div>
+  </div><br><br>
+
+  <!--MatTable-->
+  <div class="row">
+    <mat-table class="col-12 mx-auto" #table [dataSource]="dataSource">
+      <!--gender-->
+      <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.gender }}</mat-cell>
+      </ng-container>
+      <!--cell-->
+      <ng-container matColumnDef="cell">
+        <mat-header-cell *matHeaderCellDef>Cell</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.cell }}</mat-cell>
+      </ng-container>
+      <!--email-->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+      </ng-container>
+      <!--nat-->
+      <ng-container matColumnDef="nat">
+        <mat-header-cell *matHeaderCellDef>Nat</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.nat }}</mat-cell>
+      </ng-container>
+      <!--phone-->
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.phone }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div><br><br>
+
+  <!--MatPaginator-->
+  <div class="row">
+    <mat-paginator
+      class="col-12 mx-auto"
+      #paginator
+      pageSize="10"
+      [pageSizeOptions]="[5, 10, 15, 50]">
+    </mat-paginator>
   </div>
 
   <!--Material form components-->
