@@ -7,19 +7,19 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserService {
 
-  private url: string = 'https://randomuser.me/api/?results=100';
+  private url: string = 'https://randomuser.me/api/0.6/?results=100';
 
   constructor(private httpClient: HttpClient) {}
 
   getAll(): Observable<UserModel[]> {
-    return this.httpClient.get(this.url).map( (res: {results: any[], info: any}) => {
+    return this.httpClient.get(this.url).map( (res: {results: {user: any, seed: any}[]}) => {
       const users = res.results.map(user => {
         const mappedUser = {
-          gender: user.gender,
-          cell: user.cell,
-          email: user.email,
-          nat: user.nat,
-          phone: user.phone
+          gender: user['user'].gender,
+          cell: user['user'].cell,
+          email: user['user'].email,
+          nat: user['user'].nationality,
+          phone: user['user'].phone
         };
         return mappedUser;
       });

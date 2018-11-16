@@ -17,7 +17,8 @@ import {
   MatChipInputEvent,
   MatDialog,
   MatDialogRef,
-  MatSnackBar
+  MatSnackBar,
+  MatSort
 } from '@angular/material';
 
 // Dialog component
@@ -90,6 +91,7 @@ export class HomeComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   // Référence locale pour la pagination
   @ViewChild('paginator') public paginator: MatPaginator;
+  @ViewChild(MatSort) public sort: MatSort;
 
   constructor(
     private fb: FormBuilder,
@@ -133,10 +135,13 @@ export class HomeComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
     // Get all users
     this.userService.getAll().subscribe( users => {
+      console.log(users);
       this.users = users;
       this.dataSource = new MatTableDataSource(this.users);
-      // Lier dataSource à la pagination
+      // Binding dataSource.paginator à la @ViewChild('paginator')
       this.dataSource.paginator = this.paginator;
+      // Binding dataSource.sort à la @ViewChild('MatSort')
+      this.dataSource.sort = this.sort;
     });
 
   }
@@ -272,6 +277,10 @@ export class HomeComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     });
   }
 
+  /**
+   * Barre de notification
+   * @param message Message à faire passe dans la barre
+   */
   public openSnackBar(message: string): void {
     // const snackBarRef = this.snackBar.open(message, 'Fermer', {duration: 500});
     const snackBarRef = this.snackBar.openFromComponent(SnackBarComponent, {data: {nom: 'Poncet', prenom: 'Antonin'}});
@@ -289,5 +298,16 @@ export class HomeComponent extends MatPaginatorIntl implements OnInit, OnDestroy
       console.log(data);
     });
   }
+
+  /**
+   * Filtrage par mot clé
+   * @param filtre Mot à filtrer
+   */
+  public filtrer(filtre: string) {
+    filtre = filtre.trim().toLowerCase();
+
+    this.dataSource.filter = filtre;
+  }
+
 
 }

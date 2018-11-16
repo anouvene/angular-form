@@ -315,30 +315,35 @@
 
   <!--MatTable-->
   <div class="row">
-    <mat-table class="col-12 mx-auto" #table [dataSource]="dataSource">
+    <!--Filtrage par mot clé-->
+    <mat-form-field>
+      <input matInput (keyup)="filtrer($event.target.value)" placeholder="Filtrer">
+    </mat-form-field>
+
+    <mat-table class="col-12 mx-auto" #table [dataSource]="dataSource" matSort>
       <!--gender-->
       <ng-container matColumnDef="gender">
-        <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header start="desc" disableClear="true" arrowPosition="before">Gender</mat-header-cell>
         <mat-cell *matCellDef="let user">{{ user.gender }}</mat-cell>
       </ng-container>
       <!--cell-->
       <ng-container matColumnDef="cell">
-        <mat-header-cell *matHeaderCellDef>Cell</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Cell</mat-header-cell>
         <mat-cell *matCellDef="let user">{{ user.cell }}</mat-cell>
       </ng-container>
       <!--email-->
       <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
         <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
       </ng-container>
       <!--nat-->
       <ng-container matColumnDef="nat">
-        <mat-header-cell *matHeaderCellDef>Nat</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Nat</mat-header-cell>
         <mat-cell *matCellDef="let user">{{ user.nat }}</mat-cell>
       </ng-container>
       <!--phone-->
       <ng-container matColumnDef="phone">
-        <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Phone</mat-header-cell>
         <mat-cell *matCellDef="let user">{{ user.phone }}</mat-cell>
       </ng-container>
 

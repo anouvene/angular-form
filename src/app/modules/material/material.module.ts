@@ -31,13 +31,12 @@ import { MatFormFieldModule,
          MatSnackBarModule,
          MatTableModule,
          MatPaginatorModule,
-         MatPaginatorIntl
+         MatPaginatorIntl,
+         MatSortModule
 
 } from '@angular/material';
 
 import { HomeComponent } from '@app/modules/home/pages/home.component';
-
-
 
 const MATERIAL = [
   MatFormFieldModule,
@@ -69,7 +68,8 @@ const MATERIAL = [
   MatTooltipModule,
   MatSnackBarModule,
   MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatSortModule
 
 ];
 
